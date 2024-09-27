@@ -1,0 +1,66 @@
+<h3>投稿一覧ページ</h3>
+
+
+<div class="kensaku">
+
+ <%= form_tag({controller:"musics",action:"index"}, method: :get) do %>
+   <%= text_field_tag :search %>
+   <%= submit_tag '検索する'  %>
+<% end %>
+</div>
+
+
+
+<%= link_to "新規投稿へ", new_music_path %>
+<%= link_to "トップページへ", pages_home_path %>
+
+<%= page_entries_info @musics %>
+<%= paginate @musics %>
+
+
+
+
+<div class="misics-container">
+  
+ <% @musics.each do |t| %>
+    <div class="music">
+      <div class="picture">
+       <%= image_tag t.image_url, size: "250x200",class: "left-image"  if t.image? %>  
+      </div>
+      <div class="body1">
+          <%= t.user.name %><br>
+          <%= t.music_name %>
+          <%= t.artist_name %>
+          <%= t.genre %><br>
+          <%= "曲への想い:"+t.body %><br>
+          <%= link_to t.url, t.url,target: "_blank" %><br>  
+          <%= "どんな時に聴きたいか？:"+t.feel%>
+        
+          <% if user_signed_in? %>
+          <% if current_user.already_liked?(t) %>
+              <%= link_to music_like_path(id: t.id, music_id: t.id), method: :delete do %>
+                <i class="fas fa-heart"></i><%= t.likes.count %>
+
+              <% end %>
+          <% else %>
+              <%= link_to music_likes_path(id: t.id, music_id: t.id), method: :post do %>
+                <i class="fas fa-heart"></i><%= t.likes.count %>
+
+              <% end %>
+          <% end %>
+          <% else %>
+          <i class="fas fa-heart"></i><%= t.likes.count %>
+
+          <% end %>
+
+          <%= link_to "詳細へ", music_path(t.id) %> 
+          
+          <% if user_signed_in? && current_user.id == t.user_id %>
+          <%= link_to "編集する", edit_music_path(t.id) %>
+          <%= link_to "削除する", music_path(t.id), method: :delete %>
+          
+        <% end %> 
+      </div>
+    </div>
+  <% end %>
+</div>

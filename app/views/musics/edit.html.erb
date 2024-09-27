@@ -1,0 +1,29 @@
+<%= form_for @music do |f| %>
+  
+ <div class="edit"
+  <%= f.label :'音楽名' %>
+  <%= f.text_field :music_name %>
+  <%= f.label :'歌手名・作曲者名 など' %>
+  <%= f.text_field :artist_name %>
+  <%= f.label :'ジャンル' %>
+  <%= f.text_field :genre %>
+  <%= f.label :'あなたの曲への想い' %>
+  <%= f.text_field :body %>
+  <%= f.label :'Youtube URL など' %>
+  <%= f.text_field :url %>
+  <%= f.label :どんな時に聴きたい？ %>
+  <%= f.select :feel, 
+    [["楽しい", "楽しい"], 
+    ["悲しい", "悲しい"], 
+    ["落ち着きたい", "落ち着きたい"]], include_blank: "選択して下さい" %>
+  <%= f.label :'画像（サムネなど）' %>
+  <%= f.text_field :image %>
+  <%= f.submit "編集する" %>
+ </div>
+
+
+  <%= link_to "投稿一覧に戻る", musics_path %>
+
+<% end %>
+
+  

@@ -1,0 +1,26 @@
+<%= link_to image_tag(music.image.url(width: 250, height: 200, crop: 'fit')), music_path(music.id) %>
+
+<i class="fa fa-heart unlike-btn"></i>
+<%= music.likes.length %>
+
+<% @like_musics.each do |t| %>
+    <div class='ine'>
+    <%= link_to music.user.name, user_path(music.user.id) %><br/>
+    <%= t.music_name %><br>
+    <%= t.artist_name %><br>
+    <%= t.genre %><br>
+    <%="曲への想い:"+ t.body %><br>
+  
+    <%= link_to t.url, t.url,target: "_blank" %><br>  
+    <%= "どんな時に聴きたい？:"+t.feel %> <br/>  
+    
+
+   <%= link_to "投稿一覧に戻る", musics_path %>
+    </div>
+
+
+
+    
+  
+  <% end %>
+

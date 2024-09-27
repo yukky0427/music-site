@@ -1,0 +1,41 @@
+.musics-container {
+    width: 50%;
+    margin: 10px auto;
+  
+    
+
+  }
+  h3 {
+    width: 100px;
+    margin: 30px auto;
+    text-align: center;
+  }
+  
+  
+  .music {
+    border-top: solid black;
+    margin-top: 10px;
+    padding-top: 20px;
+    font-weight: bold;
+    display: flex;
+  }
+
+  .body1{
+    padding: 20px;
+  }
+  .main-box {
+    margin: 5px 0;
+    display: flex;
+    justify-content: space-between;
+  }
+  .time {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .left-image{
+    margin-left: 10px;
+  }
+
+
+

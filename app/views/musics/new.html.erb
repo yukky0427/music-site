@@ -1,0 +1,66 @@
+
+<h3>新規投稿ページ</h3>
+<%= form_for @music do |f| %>
+
+
+  
+  <div class="field">
+    <%= f.label :"曲名" %>
+    <%= f.text_field :music_name, :size => 30 %>
+  </div>
+
+
+<div class="field">
+<%= f.label :"歌手名・作曲者名 など"%>
+<%= f.text_field :artist_name, :size => 30 %>
+</div>
+
+
+<div class="field">
+<%= f.label :"ジャンル" %>
+<%= f.text_field :genre, :size => 30 %>
+</div>
+
+
+<div class="field">
+<%= f.label :"あなたの曲への想い"  %>
+<%= f.text_area :body, :size => "30x2" %>
+</div>
+
+
+
+
+
+
+
+  <div class="field">
+  <%= f.label :"Youtube URL など"  %>
+  <%= f.text_area :url, :size => "30x2" %>
+  </div>
+
+
+  
+
+
+
+  <div class="field">
+    <%= f.label :どんな時に聴きたい？ %>
+    <%= f.select :feel, 
+    [["楽しい", "楽しい"], 
+    ["悲しい", "悲しい"], 
+    ["落ち着きたい", "落ち着きたい"]], include_blank: "選択して下さい" %>
+  </div>
+
+  <div class="field">
+  <%= f.label :画像（サムネなど） %>
+  <%= f.file_field :image %>
+  </div>
+
+
+
+  <%= f.submit "投稿する" %>
+  <% end %>
+  
+  <%= link_to "投稿一覧に戻る", musics_path %>
+
+

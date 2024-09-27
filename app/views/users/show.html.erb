@@ -1,0 +1,43 @@
+<h1>ユーザー情報</h1>
+<p>名前 : <%= @user.name %></p>
+<p>メールアドレス : <%= @user.email %></p>
+<p>プロフィール : <%= @user.profile %></p>
+
+<% if current_user.id == @user.id %>
+  <%= link_to "編集する", edit_user_registration_path %>
+<% end %>
+
+
+<%= link_to "いいねした投稿", likes_user_path(@user) %>
+<%= link_to "新規投稿へ", new_music_path %>
+<%= link_to "投稿一覧に戻る", musics_path %>
+
+
+
+<h2>ユーザーの投稿一覧</h2>
+
+<div class=info>
+<% @user.musics.each do |t| %>
+  <hr>
+  <%= t.user.name %>
+  <%= t.music_name %>
+  <%= t.artist_name %>
+  <%= t.genre %><br/>
+  <%= t.body %><br/>
+  <%= link_to t.url, t.url,target: "_blank" %><br>  
+  <%= t.feel %> <br/>   
+  <%= t.created_at %><br/>
+  
+
+<%= link_to "編集する", edit_music_path(t.id) %>
+
+<% end %>
+</div>
+
+
+
+
+
+
+
+

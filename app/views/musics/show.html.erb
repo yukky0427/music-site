@@ -1,0 +1,57 @@
+
+<h3>投稿詳細</h3>
+<div class="music_">
+<p><%= @music.user.name %><br></p>
+<p><%= @music.music_name %></p>
+<p><%= @music.artist_name %></p>
+<p><%= @music.genre %><br></p>
+<p><%= "曲への想い:"+@music.body %><br></p>
+<%= link_to @music.url, @music.url,target: "_blank" %><br>  
+<p><%= "どんな時に聴きたい？:"+@music.feel %><br></p>
+<p><%= @music.created_at %></p>
+</div>
+  
+
+  
+  
+  
+  <% if user_signed_in? %>
+  <% if current_user.already_liked?(@music) %>
+    <%= link_to music_like_path(@music), method: :delete do %>
+    <i class="fas fa-heart"></i><%= @music.likes.count %>
+ 
+    <% end %>
+  <% else %>
+    <%= link_to music_likes_path(@music), method: :post do %>
+      <i class="fas fa-heart"></i><%= @music.likes.count %>
+
+    <% end %>
+  <% end %>
+<% else %>
+ <i class="fas fa-heart"></i><%= @music.likes.count %>
+
+<% end %>
+<%= link_to "編集する", edit_music_path(@music.id) %>
+</div>
+
+
+
+<h3>いいねしたユーザー</h3>
+
+
+<% @music.liked_users.each do |user| %>
+
+
+
+    <li><%= user.name %></li>
+
+
+
+
+  
+
+    <%= link_to "投稿一覧に戻る", musics_path %>
+  </div>
+
+<% end %>
+
